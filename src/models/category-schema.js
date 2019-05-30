@@ -1,11 +1,13 @@
-'use strict'
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const catagorySchema = mongoose.Schema({
-    name: {type: String, required: true}
-})
+const categorySchema = mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true }
+});
 
-const Catagory = mongoose.models.catagories || mongoose.model('catagory', catagorySchema);
+const Category =
+  mongoose.models.category || mongoose.model("category", categorySchema);
 
-module.exports = Catagory;
+module.exports = Category;

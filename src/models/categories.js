@@ -1,28 +1,22 @@
 "use strict";
-const Catagory = require('./category-schema.js');
+const Category = require("./category-schema.js");
 
 class CategoryRepo {
-  constructor() {
-    
+  getAll() {
+    return Category.find();
   }
-
   get(_id) {
-    
+   
   }
 
-  post(catagory) {
-    var newCatagory = new Category(categories);
-    return newCatagory.save();
+  post(categories) {
+    var newCategory = new Category(categories);
+    return newCategory.save();
   }
 
+  put(_id, record) {}
 
-  put(_id, record) {
-
-  }
-
-  delete(_id) {
-
-  }
+  delete(_id) {}
 }
 
 module.exports = CategoryRepo;

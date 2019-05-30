@@ -28,13 +28,20 @@ The provided API server is setup to work, but the data models are not implemente
 
 Work in the api-server/src/models folder in the starter code
 You will find the models (with empty methods) in the models folder
+
 Implement each data model, in different manners, using only TDD
+
+
 Categories
 Create this as a class
+
 Create a mongoose schemas for this collection
+
 The model class should hold and manage the data in memory
+
 The model class should expose methods that match REST verbs
 get()
+
 post()
 put()
 delete()
