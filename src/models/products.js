@@ -2,7 +2,7 @@
 const Product = require("./products-schema.js");
 const uuid = require("uuid/v4");
 
-class Products {
+class ProductsRepo {
     getAll() {
         return Product.find();
       }
@@ -16,7 +16,9 @@ class Products {
     return newProduct.save();
   }
 
-  put(id, entry) {}
+  put(id, entry) {
+      return Product.updateOne();
+  }
 
   delete(id) {
     return Product.deleteOne();
@@ -25,4 +27,4 @@ class Products {
   sanitize(entry) {}
 }
 
-module.exports = Products;
+module.exports = ProductsRepo;
