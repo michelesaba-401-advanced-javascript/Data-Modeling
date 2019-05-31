@@ -7,8 +7,6 @@
 const mongoose = require("mongoose");
 const MongoMemoryServer = require("mongodb-memory-server").default;
 const supertest = require("supertest");
-const Category = require("../src/models/categories");
-const newCategory = new Category();
 let mongoServer;
 
 let supergoose = (module.exports = {});
@@ -48,14 +46,5 @@ supergoose.stopDB = () => {
 describe("supergoose", () => {
   it("is super", () => {
     expect(true).toBeTruthy();
-  });
-
-  it.skip('should add a new category', async () => {
-      var result = await newCategory.post({
-          name: "Jade",
-          description: "An amazing list of jade products"
-      });
-      expect(result).toBeDefined();
-      expect(result.name).toBe('Jade');
   });
 });

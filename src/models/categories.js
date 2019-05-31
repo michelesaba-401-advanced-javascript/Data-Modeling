@@ -14,8 +14,14 @@ class CategoryRepo {
     return newCategory.save();
   }
 
-  update(_id, entry) {
-    return Category.updateOne();
+  async update(_id, entry) {
+    let docToUpdate = await Category.findOne({ _id })
+
+    console.log('before assign', docToUpdate);
+    Object.assign(docToUpdate, entry)
+    console.log('after assign', docToUpdate);
+
+    return await docToUpdate.save()
   }
 
   delete(_id) {
