@@ -5,8 +5,8 @@ class CategoryRepo {
   getAll() {
     return Category.find();
   }
-  get(_id) {
-   
+  getbyId(_id) {
+    return Category.find();
   }
 
   post(categories) {
@@ -14,9 +14,13 @@ class CategoryRepo {
     return newCategory.save();
   }
 
-  put(_id, record) {}
+  update(_id, categories) {
+    return Category.updateOne();
+  }
 
-  delete(_id) {}
+  delete(_id) {
+    return Category.deleteOne();
+  }
 }
 
 module.exports = CategoryRepo;
