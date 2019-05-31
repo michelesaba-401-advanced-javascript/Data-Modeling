@@ -92,7 +92,7 @@ function deleteCategories(request, response, next) {
 function getProducts(request, response, next) {
   // expects an array of objects back
   products
-    .get()
+    .getAll()
     .then(data => {
       const output = {
         count: data.length,

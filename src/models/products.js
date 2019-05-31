@@ -1,21 +1,26 @@
 "use strict";
-
+const Product = require("./products-schema.js");
 const uuid = require("uuid/v4");
 
-const schema = {};
-
 class Products {
-  constructor() {
-    this.database = [];
+    getAll() {
+        return Product.find();
+      }
+
+  get(id) {
+    return Product.find();
   }
 
-  get(id) {}
-
-  post(entry) {}
+  post(product) {
+    var newProduct = new Product(product);
+    return newProduct.save();
+  }
 
   put(id, entry) {}
 
-  delete(id) {}
+  delete(id) {
+    return Product.deleteOne();
+  }
 
   sanitize(entry) {}
 }

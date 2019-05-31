@@ -14,7 +14,7 @@ class CategoryRepo {
     return newCategory.save();
   }
 
-  update(_id, categories) {
+  update(_id, category) {
     return Category.updateOne();
   }
 
