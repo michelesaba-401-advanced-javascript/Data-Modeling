@@ -45,6 +45,7 @@ get()
 post()
 put()
 delete()
+
 Products
 Create this as a class
 Create a mongoose schemas for this collection
