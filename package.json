@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --verbose --detectOpenHandles",
     "test-watch": "jest --watchAll --verbose",
-    "lint": "eslint **/*.js"
+    "lint": "eslint"
   },
   "jest": {
     "testEnvironment": "node"
