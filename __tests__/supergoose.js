@@ -49,13 +49,4 @@ describe("supergoose", () => {
   it("is super", () => {
     expect(true).toBeTruthy();
   });
-
-  it.skip('should add a new category', async () => {
-      var result = await newCategory.post({
-          name: "Jade",
-          description: "An amazing list of jade products"
-      });
-      expect(result).toBeDefined();
-      expect(result.name).toBe('Jade');
-  });
 });

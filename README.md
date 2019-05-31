@@ -41,7 +41,6 @@ The model class should hold and manage the data in memory
 
 The model class should expose methods that match REST verbs
 get()
-
 post()
 put()
 delete()
@@ -49,7 +48,10 @@ delete()
 Products
 Create this as a class
 Create a mongoose schemas for this collection
+
 Use a pre-save hook to manipulate some part of the input (uppercase something, for example)
+
+
 The model class should expose methods that match REST verbs yet use mongoose data access methods
 get()
 post()

@@ -3,7 +3,7 @@ const Category = require("./category-schema.js");
 
 class CategoryRepo {
   getAll() {
-    return Category.find();
+    return Promise.resolve(Category.find());
   }
   getbyId(_id) {
     return Category.find();
