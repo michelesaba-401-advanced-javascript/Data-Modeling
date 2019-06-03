@@ -45,7 +45,7 @@ supergoose.stopDB = () => {
 };
 
 // Just so that it can live in the tests folder
-describe("supergoose", () => {
+describe.skip("supergoose", () => {
   it("is super", () => {
     expect(true).toBeTruthy();
   });

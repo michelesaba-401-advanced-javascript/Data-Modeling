@@ -1,19 +1,19 @@
-"use strict";
+'use strict';
 
 // 3rd Party Resources
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 
 // Esoteric Resources
-const errorHandler = require("./middleware/error.js");
-const notFound = require("./middleware/404.js");
+const errorHandler = require('./middleware/error.js');
+const notFound = require('./middleware/404.js');
 
 // Models
-const Products = require("./models/products.js");
+const Products = require('./models/products.js');
 const products = new Products();
 
-const Categories = require("./models/categories.js");
+const Categories = require('./models/categories.js');
 const categories = new Categories();
 
 // Prepare the express app
@@ -21,23 +21,23 @@ const app = express();
 
 // App Level MW
 app.use(cors());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get("/categories", getCategories);
-app.post("/categories", postCategories);
-app.get("/categories/:id", getCategory);
-app.put("/categories/:id", putCategories);
-app.delete("/categories/:id", deleteCategories);
+app.get('/categories', getCategories);
+app.post('/categories', postCategories);
+app.get('/categories/:id', getCategory);
+app.put('/categories/:id', putCategories);
+app.delete('/categories/:id', deleteCategories);
 
-app.get("/products", getProducts);
-app.post("/products", postProducts);
-app.get("/products/:id", getProduct);
-app.put("/products/:id", putProducts);
-app.delete("/products/:id", deleteProducts);
+app.get('/products', getProducts);
+app.post('/products', postProducts);
+app.get('/products/:id', getProduct);
+app.put('/products/:id', putProducts);
+app.delete('/products/:id', deleteProducts);
 
 // Catchalls
 app.use(notFound);
@@ -106,7 +106,7 @@ function getProducts(request, response, next) {
 function getProduct(request, response, next) {
   // expects an array with one object in it
   products
-    .get(request.params.id)
+    .getbyId(request.params.id)
     .then(result => response.status(200).json(result[0]))
     .catch(next);
 }

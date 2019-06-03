@@ -11,22 +11,30 @@ describe("Data-modeling", () => {
   });
   it("should add a new category", async () => {
     var result = await categories.post({
-      name: "Jade",
-      description: "An amazing list of jade products."
+      name: "Turquoise",
+      description: "An amazing list of turquoise products."
     });
     newId = result._id;
     newName = result.name;
     expect(result).toBeDefined();
-    expect(result.name).toBe("Jade");
-    console.log(newId);
+    expect(result.name).toBe('Turquoise');
+    expect(result._id).toBeDefined();
   });
-  it("should get by id", async () => {
+  it("should get category by id", async () => {
     var result = await categories.getbyId(newId);
+    console.log(newId);
     expect(result).toBeDefined();
-    expect(newName).toBe("Jade");
+    expect(newName).toBe("Turquoise");
   });
-  it("should add delete an entry", async () => {
-    var result = await categories.delete(newId);
-    expect(result).toBeDefined();
-  });
+  // it("should add delete an entry", async () => {
+  //   var result = await categories.delete(newId);
+  //   expect(result).toBeDefined();
+  // });
+  // it("should update an existing category", async () => {
+  //   var result = await categories.update(newCategory._id, {
+  //     name: "Yellow"
+  //   });
+  //   expect(result).toBeDefined();
+  //   expect(result.name).toBe('Yellow');
+  // });
 });

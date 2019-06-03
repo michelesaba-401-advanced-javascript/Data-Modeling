@@ -1,14 +1,14 @@
-"use strict";
-const Product = require("./products-schema.js");
-const uuid = require("uuid/v4");
+'use strict';
+const Product = require('./products-schema.js');
+const uuid = require('uuid/v4');
 
 class ProductsRepo {
-    getAll() {
-        return Product.find();
-      }
-
-  get(id) {
+  getAll() {
     return Product.find();
+  }
+
+  getbyId(_id) {
+    return Product.find(_id);
   }
 
   post(product) {
@@ -16,9 +16,9 @@ class ProductsRepo {
     return newProduct.save();
   }
 
-  put(id, entry) {
-      return Product.updateOne();
-  }
+  // put(id, entry) {
+  //   return Product.updateOne();
+  // }
 
   delete(id) {
     return Product.deleteOne();

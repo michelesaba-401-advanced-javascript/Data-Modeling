@@ -5,19 +5,18 @@ class CategoryRepo {
   getAll() {
     return Promise.resolve(Category.find());
   }
-  getbyId(_id) {
-    return Category.find();
+  async getbyId(_id) {
+    return await Category.find();
   }
-
   post(categories) {
     var newCategory = new Category(categories);
     return newCategory.save();
   }
-
-  update(_id, entry) {
-    return Category.updateOne();
+  async update(_id, entry) {
+    let docToUpdate = await Category.findOne({ _id });
+    Object.assign(docToUpdate, entry);
+    return await docToUpdate.save();
   }
-
   delete(_id) {
     return Category.deleteOne();
   }
