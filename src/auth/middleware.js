@@ -16,26 +16,23 @@ module.exports = capability => (req, res, next) => {
       return _authError();
   }
 
-  function _authenticate(user) {
+  async function _authenticate(user) {
     if (!user) return _authError();
+    if (!user.can(capability)) return _authError();
 
     req.user = user;
     req.token = user.generateToken();
-    console.log({ token: req.token });
     next();
   }
 
   async function _authBearer(token) {
-    console.log("authBearer", token);
     let user = await User.authenticateToken(token);
-    console.log("found user with token", user);
     await _authenticate(user);
   }
 
   function _authBasic(authBase64String) {
     let base64Buffer = Buffer.from(authBase64String, "base64");
     let authString = base64Buffer.toString();
-    console.log({ base64Buffer, authString });
     let [username, password] = authString.split(":");
     let auth = { username, password };
 

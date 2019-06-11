@@ -20,13 +20,11 @@ describe("Data-modeling", () => {
     expect(result).toBeDefined();
     expect(newName).toBe("Fuzzy Blanket");
     expect(result._id).toBeDefined();
-    console.log(newId);
   });
   it("should get product by id", async () => {
     var result = await products.getbyId(newId);
     expect(result).toBeDefined();
     expect(newName).toBe("Fuzzy Blanket");
-    console.log(result);
   });
   it("should add delete an entry", async () => {
     var result = await products.delete(newId);

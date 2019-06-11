@@ -22,7 +22,6 @@ describe("Data-modeling", () => {
   });
   it("should get category by id", async () => {
     var result = await categories.getbyId(newId);
-    console.log(newId);
     expect(result).toBeDefined();
     expect(newName).toBe("Turquoise");
   });
