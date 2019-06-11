@@ -1,6 +1,6 @@
-'use strict';
-const Product = require('./products-schema.js');
-const uuid = require('uuid/v4');
+"use strict";
+const Product = require("./products-schema.js");
+const uuid = require("uuid/v4");
 
 class ProductsRepo {
   getAll() {
