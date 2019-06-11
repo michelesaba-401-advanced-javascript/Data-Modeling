@@ -21,7 +21,7 @@ function getCategories(request, response, next) {
     .then(data => {
       const output = {
         count: data.length,
-        results: data
+        results: data,
       };
       response.status(200).json(output);
     })

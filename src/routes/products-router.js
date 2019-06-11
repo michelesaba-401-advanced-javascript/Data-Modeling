@@ -21,7 +21,7 @@ function getProducts(request, response, next) {
     .then(data => {
       const output = {
         count: data.length,
-        results: data
+        results: data,
       };
       response.status(200).json(output);
     })
@@ -36,13 +36,13 @@ function getProduct(request, response, next) {
     .catch(next);
 }
 
-function postProducts(request, response, next) {
-  // expects the record that was just added to the database
-  products
-    .post(request.body)
-    .then(result => response.status(200).json(result))
-    .catch(next);
-}
+// function postProducts(request, response, next) {
+//   // expects the record that was just added to the database
+//   products
+//     .post(request.body)
+//     .then(result => response.status(200).json(result))
+//     .catch(next);
+//}
 //PRODUCT HANDLER FUNCTIONS
 function putProducts(request, response, next) {
   // expects the record that was just updated in the database

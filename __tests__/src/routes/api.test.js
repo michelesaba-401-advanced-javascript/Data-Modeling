@@ -18,15 +18,15 @@ describe("API Routes", () => {
     });
 
     it("returns 401 for user without system capability", async () => {
-      var userRole = await new Role({
+      await new Role({
         role: "user",
-        capabilities: ["update"]
+        capabilities: ["update"],
       }).save();
 
       var nonSystemUser = await new User({
         username: "Michele",
         password: "HelloWorld123",
-        role: "editor"
+        role: "editor",
       }).save();
 
       await mockRequest
@@ -37,9 +37,9 @@ describe("API Routes", () => {
 
     var adminUser;
     it("returns 200 for user with system capability", async () => {
-      var adminRole = await new Role({
+      await new Role({
         role: "admin",
-        capabilities: ["read", "update"]
+        capabilities: ["read", "update"],
       }).save();
 
       adminUser = await new User({
