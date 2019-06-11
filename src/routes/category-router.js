@@ -9,7 +9,7 @@ const categories = new Categories();
 const categoryRouter = (module.exports = new express.Router());
 
 categoryRouter.use(express.static("./public"));
-categoryRouter.get("/categories", getCategories);
+categoryRouter.get("/categories", auth("update"), getCategories);
 categoryRouter.post("/categories", postCategories);
 categoryRouter.get("/categories/:id", getCategory);
 categoryRouter.put("/categories/:id", putCategories);

@@ -9,7 +9,7 @@ const products = new Products();
 const productsRouter = (module.exports = new express.Router());
 
 productsRouter.get("/products", auth("update"), getProducts);
-productsRouter.post("/products", postProducts);
+// productsRouter.post("/products", auth("create"), postProducts);
 productsRouter.get("/products/:id", getProduct);
 productsRouter.put("/products/:id", putProducts);
 productsRouter.delete("/products/:id", deleteProducts);

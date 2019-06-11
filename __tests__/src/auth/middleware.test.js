@@ -8,7 +8,7 @@ const Role = require("../../../src/auth/role-model");
 let users = {
   admin: { username: "admin", password: "password", role: "admin" },
   editor: { username: "editor", password: "password", role: "editor" },
-  user: { username: "user", password: "password", role: "user" }
+  user: { username: "user", password: "password", role: "user" },
 };
 
 beforeAll(async () => {
@@ -25,15 +25,15 @@ describe("Auth Middleware", () => {
   let errorObject = {
     message: "Invalid Username/Password",
     status: 401,
-    statusMessage: "Unauthorized"
+    statusMessage: "Unauthorized",
   };
   describe("user authentication", () => {
     let cachedToken;
     it("fails a login for a user (admin) with incorrect basic credentials", () => {
       let req = {
         headers: {
-          authorization: "Basic YWRtaW46Zm9v"
-        }
+          authorization: "Basic YWRtaW46Zm9v",
+        },
       };
       let res = {};
       let next = jest.fn();
@@ -46,8 +46,8 @@ describe("Auth Middleware", () => {
     it("logs in an admin user with the correct credientials", () => {
       let req = {
         headers: {
-          authorization: "Basic YWRtaW46cGFzc3dvcmQ="
-        }
+          authorization: "Basic YWRtaW46cGFzc3dvcmQ=",
+        },
       };
       let res = {};
       let next = jest.fn();
@@ -64,8 +64,8 @@ describe("Auth Middleware", () => {
         //  Arrange
         let req = {
           headers: {
-            authorization: "Bearer oops"
-          }
+            authorization: "Bearer oops",
+          },
         };
         let res = {};
         let next = jest.fn();
@@ -83,8 +83,8 @@ describe("Auth Middleware", () => {
         //  Arrange
         let req = {
           headers: {
-            authorization: `Bearer ${cachedToken}`
-          }
+            authorization: `Bearer ${cachedToken}`,
+          },
         };
         let res = {};
         let next = jest.fn();

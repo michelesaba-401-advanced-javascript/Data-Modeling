@@ -8,12 +8,12 @@ module.exports = capability => (req, res, next) => {
   let [authType, authString] = req.headers.authorization.split(" ");
 
   switch (authType.toLowerCase()) {
-    case "basic":
-      return _authBasic(authString);
-    case "bearer":
-      return _authBearer(authString);
-    default:
-      return _authError();
+  case "basic":
+    return _authBasic(authString);
+  case "bearer":
+    return _authBearer(authString);
+  default:
+    return _authError();
   }
 
   async function _authenticate(user) {
@@ -43,7 +43,7 @@ module.exports = capability => (req, res, next) => {
     next({
       status: 401,
       statusMessage: "Unauthorized",
-      message: "Invalid Username/Password"
+      message: "Invalid Username/Password",
     });
   }
 };
