@@ -12,33 +12,34 @@ const User = require("../../../src/auth/users-model");
 const Role = require("../../../src/auth/role-model");
 
 describe("API Routes", () => {
-  describe("/system", () => {
+  describe("/categories", () => {
     it("returns 401 if not authenticated", () => {
-      return mockRequest.get("/products").expect(401);
+      return mockRequest.get("/categories").expect(401);
     });
 
-    it("returns 401 for user without read capability", async () => {
+    it("returns 401 for user without system capability", async () => {
       await new Role({
         role: "user",
-        capabilities: ["update"],
+        capabilities: ["read"],
       }).save();
 
-      var nonReadUser = await new User({
+      var nonSystemUser = await new User({
         username: "Michele",
         password: "HelloWorld123",
         role: "editor",
       }).save();
 
       await mockRequest
-        .get("/system")
-        .set("Authorization", `Bearer ${nonReadUser.generateToken()}`)
-        .expect(401);
+        .get("/categories")
+        .set("Authorization", `Bearer ${nonSystemUser.generateToken()}`)
+        .expect(401);        
     });
+
     var adminUser;
-    it("returns 200 for user with system capability", async () => {
+    it("returns 200 for user with READ capability", async () => {
       await new Role({
         role: "admin",
-        capabilities: ["read", "update"],
+        capabilities: ["read", "update", "delete"],
       }).save();
 
       adminUser = await new User({
@@ -48,16 +49,27 @@ describe("API Routes", () => {
       }).save();
 
       await mockRequest
-        .get("/system")
+        .get("/categories")
         .set("Authorization", `Bearer ${adminUser.generateToken()}`)
         .expect(200);
     });
-
-    it("returns 404 for POST", () => {
+    it("returns 401 for POST", () => {
       return mockRequest
-        .post("/system")
+        .post("/categories")
         .set("Authorization", `Bearer ${adminUser.generateToken()}`)
-        .expect(404);
+        .expect(401);
     });
+    it("returns 200 for DELETE", () => {
+      return mockRequest
+        .delete("/categories/:id")
+        .set("Authorization", `Bearer ${adminUser.generateToken()}`)
+        .expect(200);
+    });
+    // it("returns 200 for UPDATE", () => {
+    //   return mockRequest
+    //     .put("/categories/:id")
+    //     .set("Authorization", `Bearer ${adminUser.generateToken()}`)
+    //     .expect(200);
+    // });
   });
 });

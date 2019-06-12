@@ -8,12 +8,12 @@ const categories = new Categories();
 
 const categoryRouter = (module.exports = new express.Router());
 
-categoryRouter.use(express.static("./public"));
-categoryRouter.get("/categories", auth("update"), getCategories);
-categoryRouter.post("/categories", postCategories);
-categoryRouter.get("/categories/:id", getCategory);
-categoryRouter.put("/categories/:id", putCategories);
-categoryRouter.delete("/categories/:id", deleteCategories);
+// categoryRouter.use(express.static("./public"));
+categoryRouter.get("/categories", auth("read"), getCategories);
+categoryRouter.post("/categories", auth("create"), postCategories);
+categoryRouter.get("/categories/:id", auth("read"), getCategory);
+categoryRouter.put("/categories/:id", auth("update"), putCategories);
+categoryRouter.delete("/categories/:id", auth("delete"), deleteCategories);
 
 function getCategories(request, response, next) {
   categories
@@ -27,7 +27,6 @@ function getCategories(request, response, next) {
     })
     .catch(next);
 }
-
 function getCategory(request, response, next) {
   // expects an array with the one matching record from the model
   categories
