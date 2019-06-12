@@ -51,7 +51,7 @@ users.statics.authenticateToken = async function(token) {
     let parsedToken = jwt.verify(token, process.env.SECRET || "changeit");
     let query = { _id: parsedToken.id };
     return this.findOne(query);
-  } catch {
+  } catch (err) {
     return null;
   }
 };

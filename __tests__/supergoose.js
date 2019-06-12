@@ -31,21 +31,19 @@ supergoose.startDB = async () => {
     useCreateIndex: true
   };
 
-  await mongoose.connect(mongoUri, mongooseOptions, err => {
-    if (err) console.error(err);
-  });
+  await mongoose.connect(mongoUri, mongooseOptions);
 };
 
 /**
  * Typically used in Jest afterAll hook
  */
-supergoose.stopDB = () => {
-  mongoose.disconnect();
-  mongoServer.stop();
+supergoose.stopDB = async () => {
+  await mongoose.disconnect();
+  await mongoServer.stop();
 };
 
 // Just so that it can live in the tests folder
-describe.skip("supergoose", () => {
+describe("supergoose", () => {
   it("is super", () => {
     expect(true).toBeTruthy();
   });
