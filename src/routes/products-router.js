@@ -8,11 +8,11 @@ const products = new Products();
 
 const productsRouter = (module.exports = new express.Router());
 
-productsRouter.get("/products", auth("update"), getProducts);
-// productsRouter.post("/products", auth("create"), postProducts);
-productsRouter.get("/products/:id", getProduct);
-productsRouter.put("/products/:id", putProducts);
-productsRouter.delete("/products/:id", deleteProducts);
+productsRouter.get("/products", auth("read"), getProducts);
+productsRouter.post("/products", auth("create"), postProducts);
+productsRouter.get("/products/:id", auth("read"), getProduct);
+productsRouter.put("/products/:id", auth("update"), putProducts);
+productsRouter.delete("/products/:id", auth("delete"), deleteProducts);
 
 function getProducts(request, response, next) {
   // expects an array of objects back
@@ -36,14 +36,14 @@ function getProduct(request, response, next) {
     .catch(next);
 }
 
-// function postProducts(request, response, next) {
-//   // expects the record that was just added to the database
-//   products
-//     .post(request.body)
-//     .then(result => response.status(200).json(result))
-//     .catch(next);
-//}
-//PRODUCT HANDLER FUNCTIONS
+function postProducts(request, response, next) {
+  // expects the record that was just added to the database
+  products
+    .post(request.body)
+    .then(result => response.status(200).json(result))
+    .catch(next);
+}
+// PRODUCT HANDLER FUNCTIONS
 function putProducts(request, response, next) {
   // expects the record that was just updated in the database
   products

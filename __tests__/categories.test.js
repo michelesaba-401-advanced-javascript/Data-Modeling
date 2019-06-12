@@ -12,12 +12,12 @@ describe("Data-modeling", () => {
   it("should add a new category", async () => {
     var result = await categories.post({
       name: "Turquoise",
-      description: "An amazing list of turquoise products."
+      description: "An amazing list of turquoise products.",
     });
     newId = result._id;
     newName = result.name;
     expect(result).toBeDefined();
-    expect(result.name).toBe('Turquoise');
+    expect(result.name).toBe("Turquoise");
     expect(result._id).toBeDefined();
   });
   it("should get category by id", async () => {
