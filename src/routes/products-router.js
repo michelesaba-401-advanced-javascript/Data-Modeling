@@ -8,6 +8,9 @@ const products = new Products();
 
 const productsRouter = (module.exports = new express.Router());
 
+const idCheck = require("../middleware/id-check.js");
+productsRouter.param("id", idCheck);
+
 productsRouter.get("/products", auth("read"), getProducts);
 productsRouter.post("/products", auth("create"), postProducts);
 productsRouter.get("/products/:id", auth("read"), getProduct);

@@ -8,6 +8,9 @@ const categories = new Categories();
 
 const categoryRouter = (module.exports = new express.Router());
 
+const idCheck = require("../middleware/id-check.js");
+categoryRouter.param("id", idCheck);
+
 // categoryRouter.use(express.static("./public"));
 categoryRouter.get("/categories", auth("read"), getCategories);
 categoryRouter.post("/categories", auth("create"), postCategories);

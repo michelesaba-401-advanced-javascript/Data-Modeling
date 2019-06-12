@@ -42,6 +42,13 @@ describe("API Routes", () => {
         .expect(401);
     });
 
+    it("returns 404 for DELETE with invalid :id", () => {
+      return mockRequest
+        .delete("/categories/:id")
+        .set("Authorization", `Bearer ${users.admin.generateToken()}`)
+        .expect(404);
+    });
+
     it("returns 200 for DELETE", () => {
       return mockRequest
         .delete("/categories/:id")
