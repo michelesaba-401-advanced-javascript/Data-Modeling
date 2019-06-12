@@ -42,6 +42,21 @@ describe("API Routes", () => {
         .expect(401);
     });
 
+    let savedCategory;
+    it("returns 200 for POST for user with create", () => {
+      return mockRequest
+        .post("/categories")
+        .send({ name: "test!", description: "awesome!" })
+        .set("Authorization", `Bearer ${users.admin.generateToken()}`)
+        .expect(200)
+        .expect(response => {
+          console.log("POST body", response.body);
+          expect(response.body).toHaveProperty("name", "test!");
+
+          savedCategory = response.body;
+        });
+    });
+
     it("returns 404 for DELETE with invalid :id", () => {
       return mockRequest
         .delete("/categories/:id")
@@ -49,9 +64,16 @@ describe("API Routes", () => {
         .expect(404);
     });
 
+    it("returns 401 for DELETE with user lacking delete permission", () => {
+      return mockRequest
+        .delete(`/categories/${savedCategory._id}`)
+        .set("Authorization", `Bearer ${users.editor.generateToken()}`)
+        .expect(401);
+    });
+
     it("returns 200 for DELETE", () => {
       return mockRequest
-        .delete("/categories/:id")
+        .delete(`/categories/${savedCategory._id}`)
         .set("Authorization", `Bearer ${users.admin.generateToken()}`)
         .expect(200);
     });

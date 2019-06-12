@@ -18,7 +18,10 @@ class CategoryRepo {
     return await docToUpdate.save();
   }
   delete(_id) {
-    return Category.deleteOne();
+    return Category.deleteOne({ _id })
+      .then(result => {
+        console.log(result);
+      });
   }
 }
 
