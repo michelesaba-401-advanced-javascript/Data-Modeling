@@ -21,7 +21,7 @@ describe("Data-modeling", () => {
       name: "Turquoise",
       description: "An amazing list of turquoise products.",
     });
-
+   
     var getId = await categories.getbyId(result.getId_id);
     expect(getId).toBeDefined();
     expect(result.name).toBe("Turquoise");

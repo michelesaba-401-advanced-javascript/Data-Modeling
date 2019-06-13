@@ -20,7 +20,9 @@ class ProductsRepo {
   // }
 
   delete(_id) {
-    return Product.deleteOne(_id);
+    return Product.deleteOne({ _id }).then(result => {
+      console.log(result);
+    });
   }
 
   sanitize() {}
