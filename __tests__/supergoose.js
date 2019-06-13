@@ -7,8 +7,7 @@
 const mongoose = require("mongoose");
 const MongoMemoryServer = require("mongodb-memory-server").default;
 const supertest = require("supertest");
-const Category = require("../src/models/categories");
-const newCategory = new Category();
+
 let mongoServer;
 
 let supergoose = (module.exports = {});
@@ -28,7 +27,7 @@ supergoose.startDB = async () => {
 
   const mongooseOptions = {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   };
 
   await mongoose.connect(mongoUri, mongooseOptions);

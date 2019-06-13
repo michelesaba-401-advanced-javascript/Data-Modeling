@@ -14,12 +14,30 @@ const Role = require("../../../src/auth/role-model");
 const users = {};
 beforeAll(async () => {
   await new Role({ role: "user", capabilities: ["read"] }).save();
-  await new Role({ role: "editor", capabilities: ["read","create","update"] }).save();
-  await new Role({ role: "admin", capabilities: ["read","create","update","delete"] }).save();
+  await new Role({
+    role: "editor",
+    capabilities: ["read", "create", "update"],
+  }).save();
+  await new Role({
+    role: "admin",
+    capabilities: ["read", "create", "update", "delete"],
+  }).save();
 
-  users.user = await new User({ username: "my-user", password: "x", role: "user" }).save();
-  users.editor = await new User({ username: "my-editor", password: "x", role: "editor" }).save();
-  users.admin = await new User({ username: "my-admin", password: "x", role: "admin" }).save();
+  users.user = await new User({
+    username: "my-user",
+    password: "x",
+    role: "user",
+  }).save();
+  users.editor = await new User({
+    username: "my-editor",
+    password: "x",
+    role: "editor",
+  }).save();
+  users.admin = await new User({
+    username: "my-admin",
+    password: "x",
+    role: "admin",
+  }).save();
 });
 
 describe("API Routes", () => {
@@ -81,7 +99,7 @@ describe("API Routes", () => {
     it.skip("returns 200 for UPDATE", () => {
       return mockRequest
         .put("/categories/:id")
-        .set("Authorization", `Bearer ${adminUser.generateToken()}`)
+        .set("Authorization", `Bearer ${users.admin.generateToken()}`)
         .expect(200);
     });
   });

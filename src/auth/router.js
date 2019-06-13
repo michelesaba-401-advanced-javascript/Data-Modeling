@@ -26,7 +26,7 @@ authRouter.post("/signup", (req, res, next) => {
     .catch(next);
 });
 
-authRouter.post("/signin", auth("read"), (req, res, next) => {
+authRouter.post("/signin", auth("read"), (req, res) => {
   res.cookie("auth", req.token);
   res.send(req.token);
 });
@@ -34,7 +34,8 @@ authRouter.post("/signin", auth("read"), (req, res, next) => {
 authRouter.get("/oauth", (req, res, next) => {
   oauth(req).then(token => {
     res.status(200).send(token);
-  });
+  })
+    .catch(next);
 });
 
 authRouter.get("./githubAuth", (req, res, next) => {

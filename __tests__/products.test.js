@@ -13,7 +13,7 @@ describe("Data-modeling", () => {
   it("should add a new product", async () => {
     var result = await products.post({
       name: "Fuzzy Blanket",
-      description: "A super soft & fuzzy blanket ."
+      description: "A super soft & fuzzy blanket .",
     });
     newId = result._id;
     newName = result.name;

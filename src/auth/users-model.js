@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Role = require("./role-model");
+require("./role-model");
 
 const users = new mongoose.Schema(
   {
@@ -14,8 +14,8 @@ const users = new mongoose.Schema(
       type: String,
       required: true,
       default: "user",
-      enum: ["admin", "editor", "user"]
-    }
+      enum: ["admin", "editor", "user"],
+    },
     // TODO: the above enum is not going to work long-term
     // Something like this would be more appropriate:
     // role: { type: mongoose.Types.ObjectId, ref: Role.schema },
@@ -27,7 +27,7 @@ users.virtual("acl", {
   ref: "roles",
   localField: "role",
   foreignField: "role",
-  justOne: true
+  justOne: true,
 });
 
 users.pre("findOne", function() {
@@ -74,7 +74,7 @@ users.methods.comparePassword = function(password) {
 users.methods.generateToken = function() {
   let tokenData = {
     id: this._id,
-    capabilities: (this.acl && this.acl.capabilities) || []
+    capabilities: (this.acl && this.acl.capabilities) || [],
   };
   return jwt.sign(tokenData, process.env.SECRET || "changeit");
 };
