@@ -59,11 +59,11 @@ describe("API Routes", () => {
         .set("Authorization", `Bearer ${adminUser.generateToken()}`)
         .expect(401);
     });
-    it("returns 200 for DELETE", () => {
+    it("returns 404 for DELETE with invalid :id", () => {
       return mockRequest
         .delete("/products/:id")
         .set("Authorization", `Bearer ${adminUser.generateToken()}`)
-        .expect(200);
+        .expect(404);
     });
     // it("returns 200 for UPDATE", () => {
     //   return mockRequest
