@@ -1,5 +1,5 @@
 "use strict";
-
+const Q = require("@nmq/q/client");
 const auth = require("../auth/middleware");
 const express = require("express");
 
@@ -12,11 +12,12 @@ const idCheck = require("../middleware/id-check.js");
 categoryRouter.param("id", idCheck);
 
 // categoryRouter.use(express.static("./public"));
-categoryRouter.get("/categories", auth("read"), getCategories);
-categoryRouter.post("/categories", auth("create"), postCategories);
+categoryRouter.get("/categories", getCategories);
+
+categoryRouter.post("/categories", postCategories);
 categoryRouter.get("/categories/:id", auth("read"), getCategory);
 categoryRouter.put("/categories/:id", auth("update"), putCategories);
-categoryRouter.delete("/categories/:id", auth("delete"), deleteCategories);
+categoryRouter.delete("/categories/:id", deleteCategories);
 
 function getCategories(request, response, next) {
   categories
@@ -44,6 +45,7 @@ function postCategories(request, response, next) {
     .post(request.body)
     .then(result => response.status(200).json(result))
     .catch(next);
+  Q.publish("database", "create", request.body);
 }
 
 function putCategories(request, response, next) {
@@ -52,6 +54,7 @@ function putCategories(request, response, next) {
     .update(request.params.id, request.body)
     .then(result => response.status(200).json(result[0]))
     .catch(next);
+  Q.publish("database", "update", request.body);
 }
 
 function deleteCategories(request, response, next) {
@@ -60,4 +63,5 @@ function deleteCategories(request, response, next) {
     .delete(request.params.id)
     .then(result => response.status(200).json(result))
     .catch(next);
+  Q.publish("database", "delete", request.params.id);
 }

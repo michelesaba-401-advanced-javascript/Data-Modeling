@@ -16,9 +16,6 @@ const users = new mongoose.Schema(
       default: "user",
       enum: ["admin", "editor", "user"],
     },
-    // TODO: the above enum is not going to work long-term
-    // Something like this would be more appropriate:
-    // role: { type: mongoose.Types.ObjectId, ref: Role.schema },
   },
   { toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );

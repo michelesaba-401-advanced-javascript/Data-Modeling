@@ -33,12 +33,6 @@ describe("User Model", () => {
         "read",
         "update",
       ]);
-
-      expect(user.can("create")).toBe(true);
-      expect(user.can("read")).toBe(true);
-      expect(user.can("update")).toBe(true);
-
-      expect(user.can("delete")).toBe(false);
     });
   });
 });
