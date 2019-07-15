@@ -6,7 +6,7 @@ class CategoryRepo {
     return Promise.resolve(Category.find());
   }
   async getbyId(_id) {
-    return await Category.find();
+    return await Category.find(_id);
   }
   post(categories) {
     var newCategory = new Category(categories);
@@ -18,7 +18,10 @@ class CategoryRepo {
     return await docToUpdate.save();
   }
   delete(_id) {
-    return Category.deleteOne();
+    return Category.deleteOne({ _id })
+      .then(result => {
+        console.log(result);
+      });
   }
 }
 

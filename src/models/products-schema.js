@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
   name: { type: String, required: true },
@@ -10,6 +10,6 @@ const productSchema = mongoose.Schema({
 });
 
 const Product =
-  mongoose.models.product || mongoose.model('product', productSchema);
+  mongoose.models.product || mongoose.model("product", productSchema);
 
 module.exports = Product;

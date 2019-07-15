@@ -1,6 +1,5 @@
-'use strict';
-const Product = require('./products-schema.js');
-const uuid = require('uuid/v4');
+"use strict";
+const Product = require("./products-schema.js");
 
 class ProductsRepo {
   getAll() {
@@ -20,11 +19,13 @@ class ProductsRepo {
   //   return Product.updateOne();
   // }
 
-  delete(id) {
-    return Product.deleteOne();
+  delete(_id) {
+    return Product.deleteOne({ _id }).then(result => {
+      console.log(result);
+    });
   }
 
-  sanitize(entry) {}
+  sanitize() {}
 }
 
 module.exports = ProductsRepo;

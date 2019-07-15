@@ -1,15 +1,13 @@
+"use strict";
 
-'use strict';
+require("dotenv").config();
 
-// require('dotenv').config();
-const mongoose = require('mongoose');
-const server = require('./src/app.js')
-const mongoConnect = require('./util/mongoose-connect');
-const MONGODB_URI = process.env.MONGODB_URI ||
-  'mongodb://localhost/401d3-people';
-
-  mongoConnect(MONGODB_URI)
-    .then(() => {
-      server.start(3000);
-    })
-    .catch(console.error);
+// Start up DB Server
+const mongoose = require("mongoose");
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+};
+mongoose.connect(process.env.MONGODB_URI, options).then(() => {
+  require("./src/app.js").start(process.env.PORT);
+});
