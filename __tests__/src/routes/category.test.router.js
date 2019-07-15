@@ -42,8 +42,8 @@ beforeAll(async () => {
 
 describe("API Routes", () => {
   describe("/categories", () => {
-    it("returns 401 if not authenticated", () => {
-      return mockRequest.get("/categories").expect(401);
+    it("returns 200 if not authenticated", () => {
+      return mockRequest.get("/categories").expect(200);
     });
 
     it("returns 200 for user with READ capability", async () => {
